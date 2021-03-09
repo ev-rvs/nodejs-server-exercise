@@ -1,0 +1,30 @@
+{
+  "name": "nodejs-server-exercise",
+  "version": "1.0.0",
+  "description": "EV Onboarding Exercise",
+  "main": "index.js",
+  "scripts": {
+    "start": "node node/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ev-rvs/nodejs-server-exercise.git"
+  },
+  "keywords": ["EV Onboarding Exercise"],
+  "author": "RVS",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ev-rvs/nodejs-server-exercise/issues"
+  },
+  "homepage": "https://github.com/ev-rvs/nodejs-server-exercise#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "helmet": "^4.4.1",
+    "morgan": "^1.10.0",
+    "path": "^0.12.7"
+  }
+}
