@@ -6,7 +6,8 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const helmet = require('helmet');
 
-const { healthcheck, ping, pong } = require('./routes/index');
+const { healthcheck, ping, pong } = require('./routes');
+const { sequelize } = require('./db');
 
 const app = express();
 const port = process.env.SERVER_PORT || 3003;
@@ -61,9 +62,16 @@ app.use((err, req, res, next) => {
 });
 
 
-app.listen(port, () =>
+app.listen(port, async () => {
   // eslint-disable-next-line no-console
-  console.info(`Node application is listening on port ${port}!`),
-);
+  console.info(`Node application is listening on port ${port}!`);
+  try {
+    await sequelize.authenticate();
+    console.log('Connection has been established successfully.');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
+});
+
 
 module.exports = app;
