@@ -7,7 +7,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 
 const { healthcheck, ping, pong } = require('./routes');
-const { sequelize } = require('./db');
+const { sequelize } = require('./db/sequelize');
 
 const app = express();
 const port = process.env.SERVER_PORT || 3003;
@@ -67,7 +67,7 @@ app.listen(port, async () => {
   console.info(`Node application is listening on port ${port}!`);
   try {
     await sequelize.authenticate();
-    console.log('Connection has been established successfully.');
+    console.log('Database connection has been established successfully.');
   } catch (error) {
     console.error('Unable to connect to the database:', error);
   }
