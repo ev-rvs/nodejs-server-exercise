@@ -11,6 +11,11 @@ const sequelize = new Sequelize(process.env.POSTGRES_DB, process.env.POSTGRES_US
 // initialize models
 const pongEvent = pongEventModel(sequelize, Sequelize);
 
+// model methods
+const getAllPongEventCount = async () => {
+  return { count, rows } = await pongEvent.findAndCountAll({});
+};
+
 sequelize.sync({ force: false })
   .then(() => {
     console.log(`Database & tables created!`)
@@ -19,4 +24,5 @@ sequelize.sync({ force: false })
 module.exports = {
   sequelize,
   pongEvent,
+  getAllPongEventCount,
 };
