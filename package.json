@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node node/app.js",
-    "test": "jest --config ./jest.config.json --silent",
-    "test:watch": "npm run test -- --watchAll"
+    "test": "jest --config ./jest.config.json --silent --forceExit",
+    "test:watch": "npm run test -- --watchAll --silent --forceExit"
   },
   "repository": {
     "type": "git",
