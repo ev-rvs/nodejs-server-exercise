@@ -1,0 +1,27 @@
+version: '3'
+services:
+
+  test-database:
+    image: "postgres" # use latest official postgres version
+    env_file:
+      - ./.env # configure postgres
+    volumes:
+      - ./database-data:/var/lib/postgresql/data/ # persist data even if container shuts down
+    ports:
+      - 5432:5432
+
+  test-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    env_file:
+      - ./.env
+    depends_on: 
+      - test-database
+    volumes:
+      - ./node:/usr/src/app/node
+      - ./package.json:/usr/src/app/package.json
+      - ./package-lock.json:/usr/src/app/package-lock.json
+
+volumes:
+  database-data: {} # named volumes can be managed easier using docker-compose

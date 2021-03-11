@@ -3,8 +3,10 @@ const Sequelize = require('sequelize');
 // models
 const pongEventModel = require('./models/pongEvent');
 
+// for JEST testing
+const dbHost = (process.env.NODE_ENV === 'test') ? process.env.TEST_DATABASE_HOST : 'database';
 const sequelize = new Sequelize(process.env.POSTGRES_DB, process.env.POSTGRES_USER, process.env.POSTGRES_PASSWORD, {
-  host: 'database',
+  host: dbHost,
   dialect: 'postgres',
 });
 
@@ -16,7 +18,8 @@ const getAllPongEventCount = async () => {
   return { count, rows } = await pongEvent.findAndCountAll({});
 };
 
-sequelize.sync({ force: false })
+sequelize
+  .sync({ force: false })
   .then(() => {
     console.log(`Database & tables created!`)
 });
