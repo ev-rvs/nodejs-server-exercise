@@ -61,16 +61,17 @@ app.use((err, req, res, next) => {
   next();
 });
 
-
-app.listen(port, async () => {
-  // eslint-disable-next-line no-console
-  console.info(`Node application is listening on port ${port}!`);
-  try {
-    await sequelize.authenticate();
-    console.log('Database connection has been established successfully.');
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
-  }
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(port, async () => {
+    // eslint-disable-next-line no-console
+    console.info(`Node application is listening on port ${port}!`);
+    try {
+      await sequelize.authenticate();
+      console.log('Database connection has been established successfully.');
+    } catch (error) {
+      console.error('Unable to connect to the database:', error);
+    }
+  });
+}
 
 module.exports = app;
