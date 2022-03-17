@@ -20,14 +20,7 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - name: Set up postgres
-    - uses: harmon758/postgresql-action@v1
-      with:
-        postgresql version: '11'
-
-    - name: Checkout
     - uses: actions/checkout@v2
-
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
@@ -37,4 +30,3 @@ jobs:
     - run: npm run build --if-present
     - run: npm start
     - run: npm test
-        
