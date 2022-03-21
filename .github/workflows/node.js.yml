@@ -15,15 +15,10 @@ jobs:
 
     strategy:
       matrix:
-        node-version: ['14']
+        node-version: [12.x, 14.x, 16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - name: Configure Environment
-      run: |
-        apt-get update
-        apt-get -y install build-essential
-    
     - name: Checkout
       uses: actions/checkout@v3
 
